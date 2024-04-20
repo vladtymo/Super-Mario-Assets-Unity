@@ -5,13 +5,16 @@ using UnityEngine;
 public class MoveHero : MonoBehaviour
 {
     public float speed = 1f; // швидкість руху героя
+    public float jump = 4f; // висота стрибка
 
     SpriteRenderer sr;
+    Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -23,6 +26,9 @@ public class MoveHero : MonoBehaviour
         
         // переміщуємо героя, використовуючи швидкість [speed]
         transform.position += new Vector3(move, 0, 0) * speed * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            rb.AddForce(new Vector3(0, jump), ForceMode2D.Impulse);
 
         if (move < 0) sr.flipX = true;
         
