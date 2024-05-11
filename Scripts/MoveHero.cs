@@ -28,7 +28,7 @@ public class MoveHero : MonoBehaviour
         // переміщуємо героя, використовуючи швидкість [speed]
         transform.position += new Vector3(move, 0, 0) * speed * Time.deltaTime;
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+        if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
             rb.AddForce(new Vector3(0, jump), ForceMode2D.Impulse);
 
         if (move < 0) sr.flipX = true;
